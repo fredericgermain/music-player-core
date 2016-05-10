@@ -36,7 +36,8 @@ before_install:
 # from go-libav
   - sudo apt-get install -y build-essential yasm
   - wget -O ffmpeg.tar.bz2 http://ffmpeg.org/releases/ffmpeg-3.0.tar.bz2
-  - mkdir ffmpeg && tar xvf ffmpeg.tar.bz2 -C ffmpeg --strip-components=1 && cd ffmpeg && ./configure --prefix=/usr/local --disable-debug --enable-pthreads --enable-nonfree --enable-gpl --disable-indev=jack --enable-openssl && make && sudo make install
+  - mkdir ffmpeg && tar xvf ffmpeg.tar.bz2 -C ffmpeg --strip-components=1 && cd ffmpeg && ./configure --prefix=/usr/local --disable-debug --enable-pthreads --enable-nonfree --enable-gpl --disable-indev=jack --enable-openssl && make && sudo make install && cd -
+  - pwd
 
 
 script:
