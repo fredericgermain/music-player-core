@@ -17,9 +17,7 @@ matrix:
     - python: 3.3
 
 compiler:
-  - clang
-# No GCC atm because gcc 4.6 doesn't know about "--std=c++11" and I dont want
-# to have extra handling just for GCC.
+  - gcc
 
 env:
   CFLAGS=-I/usr/local/include
