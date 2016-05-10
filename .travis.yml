@@ -26,9 +26,8 @@ env:
 
 install:
   - sudo apt-get -qq update
-  - sudo apt-get install -y libboost1.55-dev
   - sudo apt-get install -y python-dev libsnappy-dev libtool
-  - sudo apt-get install -y yasm libchromaprint-dev portaudio19-dev libboost-dev
+  - sudo apt-get install -y yasm libchromaprint-dev portaudio19-dev libboost1.55-dev
   - sudo add-apt-repository -y ppa:mc3man/trusty-media
   - sudo apt-get -qq update
   - sudo apt-get install -y libavformat-dev libavresample-dev
