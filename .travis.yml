@@ -21,21 +21,6 @@ compiler:
 # No GCC atm because gcc 4.6 doesn't know about "--std=c++11" and I dont want
 # to have extra handling just for GCC.
 
-# Travis' Boost is too old (1.46 I think; it misses boost/atomic.hpp).
-# We need at least >=1.55. smart_ptr/intrusive_ref_counter.hpp doesn't exist in older ones.
-# Thus, install a newer one:
-before_install:
- - wget http://sourceforge.net/projects/boost/files/boost/1.55.0/boost_1_55_0.tar.bz2
- - tar --bzip2 -xf boost_1_55_0.tar.bz2
- - cd boost_1_55_0
- - ./bootstrap.sh --help
-# We only need atomic (and also only header-only).
-# All the rest takes way too much time to compile.
- - sudo ./bootstrap.sh --with-libraries="atomic"
-# Way too much output, so just display the last 50 lines.
- - sudo ./b2 install | tail -n 50
- - cd ..
-
 env:
   CFLAGS=-I/usr/local/include
 
