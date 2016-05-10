@@ -39,7 +39,7 @@ link(
 		"-lavutil",
 		"-lavformat",
 		"-lavcodec",
-		"-lswresample",
+		"-lavresample",
 		"-lportaudio",
 	] +
 	get_python_linkopts() +

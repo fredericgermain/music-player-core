@@ -7,7 +7,7 @@
 
 extern "C" {
 #include <libavformat/avformat.h>
-#include <libswresample/swresample.h>
+#include <libavresample/avresample.h>
 }
 
 #include "SampleType.hpp"

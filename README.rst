@@ -111,7 +111,7 @@ Installation
 To get the source working, you need these requirements:
 
 * boost >=1.55.0
-* ffmpeg >= 2.0 (including libswresample)
+* ffmpeg >= 2.0 (including libavresample)
 * portaudio >=v19
 * chromaprint
 
@@ -122,11 +122,11 @@ Debian/Ubuntu
 
     apt-get install python-dev libsnappy-dev libtool yasm libchromaprint-dev portaudio19-dev libboost-dev
 
-FFmpeg in Debian/Ubuntu is too old (lacks libswresample), so either do::
+FFmpeg in Debian/Ubuntu is too old (lacks libavresample), so either do::
 
     add-apt-repository ppa:jon-severinsson/ffmpeg
     apt-get update
-    apt-get install libavformat-dev libswresample-dev
+    apt-get install libavformat-dev libavresample-dev
     
 or install it from source.
 

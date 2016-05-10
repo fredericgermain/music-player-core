@@ -6,7 +6,7 @@
 
 // compile:
 // gcc -c musicplayer*.cpp -I /System/Library/Frameworks/Python.framework/Headers/
-// libtool -dynamic -o musicplayer.so musicplayer*.o -framework Python -lavformat -lavutil -lavcodec -lswresample -lportaudio -lc
+// libtool -dynamic -o musicplayer.so musicplayer*.o -framework Python -lavformat -lavutil -lavcodec -lavresample -lportaudio -lc
 
 // loosely based on ffplay.c
 // https://github.com/FFmpeg/ffmpeg/blob/master/ffplay.c
