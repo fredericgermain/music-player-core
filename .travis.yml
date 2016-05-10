@@ -1,5 +1,8 @@
 language: cpp
 
+# do not test on ubuntu 12.04, using 14.04
+dist: trusty
+
 python:
   - "2.7" # this is the officially tested and supported one for now
   - "2.6"
@@ -40,10 +43,10 @@ install:
   - sudo apt-get update
   - sudo apt-get install python-dev libsnappy-dev libtool
   - sudo apt-get install yasm libchromaprint-dev portaudio19-dev libboost-dev
-# For FFmpeg, we need a custom PPA because it's too old otherwise.
-  - sudo add-apt-repository ppa:jon-severinsson/ffmpeg -y
+  - sudo add-apt-repository ppa:mc3man/trusty-media
   - sudo apt-get update
   - sudo apt-get install libavformat-dev libswresample-dev
+  - sudo apt-get install ffmpeg
 
 script:
   - python setup.py build
