@@ -33,7 +33,7 @@ mac {
 
 	# Link against the dylibs.
 	QMAKE_LFLAGS += -L../external/ffmpeg/target/lib
-	QMAKE_LFLAGS += -lavformat -lavutil -lavcodec -lavresample
+	QMAKE_LFLAGS += -lavformat -lavutil -lavcodec -lswresample
 
 	# Link against the static libs.
 	QMAKE_LFLAGS += -L $$DESTDIR -lchromaprint -lportaudio
@@ -45,5 +45,5 @@ mac {
 !mac {
 	CONFIG += link_pkgconfig
 	PKGCONFIG += chromaprint portaudio
-	PKGCONFIG += avformat avutil avcodec avresample
+	PKGCONFIG += avformat avutil avcodec swresample
 }

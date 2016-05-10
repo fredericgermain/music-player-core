@@ -25,7 +25,7 @@ mod = Extension(
 	depends = glob("*.h") + glob("*.hpp"),
 	extra_compile_args = ["-std=c++11"],
 	undef_macros = ['NDEBUG'],
-        **pkgconfig('libavutil', 'libavformat', 'libavcodec', 'libavresample', 'portaudio-2.0', 'libchromaprint')
+        **pkgconfig('libavutil', 'libavformat', 'libavcodec', 'libswresample', 'portaudio-2.0', 'libchromaprint')
 	)
 
 setup(

@@ -275,7 +275,7 @@ void PlayerObject::setAudioTgt(int samplerate, int numchannels) {
 	if(this->playing) return;
 
 	// TODO: error checkking for samplerate or numchannels?
-	// No idea how to check what libavresample supports.
+	// No idea how to check what libswresample supports.
 
 	// see also player_setplaying where we init the PaStream (with same params)
 	this->outSamplerate = samplerate;

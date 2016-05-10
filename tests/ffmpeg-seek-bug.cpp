@@ -11,7 +11,7 @@
 
 extern "C" {
 #include <libavformat/avformat.h>
-#include <libavresample/avresample.h>
+#include <libswresample/swresample.h>
 }
 
 static void closeInputStream(AVFormatContext* formatCtx);
