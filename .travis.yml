@@ -28,12 +28,16 @@ install:
   - sudo apt-get -qq update
   - sudo apt-get install -y python-dev libsnappy-dev libtool
   - sudo apt-get install -y yasm libchromaprint-dev portaudio19-dev libboost1.55-dev
+# Libav branch, the only one ubuntu support, but they are reverting to ffmpeg...
 #  - sudo add-apt-repository -y ppa:mc3man/trusty-media
 #  - sudo apt-get -qq update
 #  - sudo apt-get install -y libavformat-dev libavresample-dev
-  - sudo add-apt-repository -y ppa:costamagnagianfranco/locutusofborg-ppa
-  - sudo apt-get -qq update
-  - sudo apt-get install -y libavformat-ffmpeg-dev libswresample-ffmpeg-dev
+
+# from go-libav
+  - sudo apt-get install -y build-essential yasm libfaac-dev libmp3lame-dev libtheora-dev libvorbis-dev libvpx-dev libx264-dev libxvidcore-dev
+  - wget -O ffmpeg.tar.bz2 http://ffmpeg.org/releases/ffmpeg-3.0.tar.bz2
+  - mkdir ffmpeg && tar xvf ffmpeg.tar.bz2 -C ffmpeg --strip-components=1 && cd ffmpeg && ./configure --prefix=/usr/local --disable-debug --enable-pthreads --enable-nonfree --enable-gpl --disable-indev=jack --enable-libx264 --enable-libfaac --enable-libmp3lame --enable-libtheora --enable-libvorbis --enable-libvpx --enable-libxvid --enable-libmp3lame --enable-openssl && make && sudo make install
+
 
 script:
   - python setup.py build
