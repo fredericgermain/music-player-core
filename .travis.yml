@@ -36,7 +36,7 @@ before_install:
   - sudo apt-get install -y build-essential yasm
 #  - wget -O ffmpeg.tar.bz2 http://ffmpeg.org/releases/ffmpeg-3.0.tar.bz2
   - wget -O ffmpeg.tar.bz2 http://ffmpeg.org/releases/ffmpeg-2.8.tar.bz2
-  - mkdir ffmpeg && tar xvf ffmpeg.tar.bz2 -C ffmpeg --strip-components=1 && cd ffmpeg && ./configure --prefix=/usr/local --disable-debug  --enable-pic --enable-pthreads --enable-nonfree --enable-gpl --disable-indev=jack --enable-openssl && make && sudo make install && cd -
+  - mkdir ffmpeg && tar xvf ffmpeg.tar.bz2 -C ffmpeg --strip-components=1 && cd ffmpeg && ./configure --prefix=/usr/local --disable-debug --disable-static --enable-shared --enable-pic --enable-pthreads --enable-nonfree --enable-gpl --disable-indev=jack --enable-openssl && make && sudo make install && cd -
 
 
 script:
