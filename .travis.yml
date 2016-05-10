@@ -41,12 +41,12 @@ env:
 
 install:
   - sudo apt-get update
-  - sudo apt-get install python-dev libsnappy-dev libtool
-  - sudo apt-get install yasm libchromaprint-dev portaudio19-dev libboost-dev
+  - sudo apt-get install -y python-dev libsnappy-dev libtool
+  - sudo apt-get install -y yasm libchromaprint-dev portaudio19-dev libboost-dev
   - sudo add-apt-repository ppa:mc3man/trusty-media
   - sudo apt-get update
-  - sudo apt-get install libavformat-dev libswresample-dev
-  - sudo apt-get install ffmpeg
+  - sudo apt-get install -y libavformat-dev libswresample-dev
+  - sudo apt-get install -y ffmpeg
 
 script:
   - python setup.py build
