@@ -42,13 +42,14 @@ before_install:
 # All the rest takes way too much time to compile.
   - sudo ./bootstrap.sh --with-libraries="atomic"
 # Way too much output, so just display the last 50 lines.
- - sudo ./b2 install | tail -n 50
- - cd ..
+  - sudo ./b2 install | tail -n 50
+  - cd ..
 # on trusty
 # - sudo apt-get install -y libboost1.55-dev
 # on xenial (libboost 1.58)
 # - sudo apt-get install -y libboost-dev
 
+# FFMPEG
 # need to use ffmpeg original branch, not libav branch that debian/ubuntu used in 2014 something
 # at least libswresample need to be ported on libav branch
 # from go-libav, then modified
