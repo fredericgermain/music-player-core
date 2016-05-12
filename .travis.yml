@@ -68,5 +68,5 @@ before_install:
 
 script:
   - python setup.py build
-  - python setup.py install
-  - python -c "import musicplayer as mp; p = mp.createPlayer()"
+  - sudo python setup.py install
+  - python -c "import sys; print sys.path; import musicplayer as mp; p = mp.createPlayer()"
