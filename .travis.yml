@@ -19,7 +19,7 @@ matrix:
 
 compiler:
   - clang
-  - gcc
+#  - gcc
 
 # for running test and loading libav
 env:
@@ -27,6 +27,7 @@ env:
 
 before_install:
 # trusty, https://github.com/travis-ci/travis-ci/issues/5326
+  - clang --version
   - export PATH=$(echo $PATH | tr ':' "\n" | sed '/\/opt\/python/d' | tr "\n" ":" | sed "s|::|:|g")
 
   - sudo apt-get -qq update
