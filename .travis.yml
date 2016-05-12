@@ -21,6 +21,11 @@ compiler:
   - clang
   - gcc
 
+# for running test and loading libav
+env:
+  LD_LIBRARY_PATH=/usr/local/lib
+  PYTHON_PATH=/usr/local/lib/python2.7/dist-packages
+
 before_install:
 # trusty, https://github.com/travis-ci/travis-ci/issues/5326
   - export PATH=$(echo $PATH | tr ':' "\n" | sed '/\/opt\/python/d' | tr "\n" ":" | sed "s|::|:|g")
