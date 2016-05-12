@@ -2,7 +2,7 @@ language: cpp
 
 # do not test on ubuntu 12.04, using 14.04
 # 16.04-xenial not avail yet
-dist: trusty
+#dist: trusty
 
 python:
   - "2.7" # this is the officially tested and supported one for now
