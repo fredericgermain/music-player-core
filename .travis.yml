@@ -27,6 +27,9 @@ env:
   PYTHON_PATH=/usr/local/lib/python2.7/dist-packages
 
 before_install:
+# trusty, https://github.com/travis-ci/travis-ci/issues/5326
+  - export PATH=$(echo $PATH | tr ':' "\n" | sed '/\/opt\/python/d' | tr "\n" ":" | sed "s|::|:|g")
+
   - sudo apt-get -qq update
   - sudo apt-get install -y build-essential yasm libtool python-dev wget git
   - sudo apt-get install -y libchromaprint-dev portaudio19-dev
