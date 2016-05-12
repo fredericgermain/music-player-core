@@ -25,9 +25,6 @@ compiler:
 env:
   LD_LIBRARY_PATH=/usr/local/lib
 
-ost_1_55_0.tar.bz2
-
-
 before_install:
   - sudo apt-get -qq update
   - sudo apt-get install -y build-essential yasm libtool python-dev wget git
