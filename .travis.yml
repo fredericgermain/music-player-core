@@ -1,8 +1,8 @@
 language: cpp
 
-# do not test on ubuntu 12.04, using 14.04
+# do not test on ubuntu 12.04-precise, using 14.04-trusty
 # 16.04-xenial not avail yet
-#dist: trusty
+dist: trusty
 
 python:
   - "2.7" # this is the officially tested and supported one for now
@@ -17,9 +17,12 @@ matrix:
     - python: 3.2
     - python: 3.3
 
+
 compiler:
+# clang 3.0 fails (boost error use of undeclared identifier 'intrusive_ptr_add_ref'), 3.4 ok
   - clang
-#  - gcc
+# gcc from travis precise fails, ok on tracis trusty
+  - gcc
 
 # for running test and loading libav
 env:
@@ -27,7 +30,6 @@ env:
 
 before_install:
 # trusty, https://github.com/travis-ci/travis-ci/issues/5326
-  - clang --version
   - export PATH=$(echo $PATH | tr ':' "\n" | sed '/\/opt\/python/d' | tr "\n" ":" | sed "s|::|:|g")
 
   - sudo apt-get -qq update
