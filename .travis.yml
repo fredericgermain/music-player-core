@@ -1,6 +1,7 @@
 language: cpp
 
 # do not test on ubuntu 12.04, using 14.04
+# 16.04-xenial not avail yet
 dist: trusty
 
 python:
@@ -20,23 +21,51 @@ compiler:
   - clang
   - gcc
 
+# for running test and loading libav
 env:
-  CFLAGS=-I/usr/local/include
+  LD_LIBRARY_PATH=/usr/local/lib
+
+ost_1_55_0.tar.bz2
+
 
 before_install:
   - sudo apt-get -qq update
-  - sudo apt-get install -y python-dev libsnappy-dev libtool
-  - sudo apt-get install -y yasm libchromaprint-dev portaudio19-dev libboost1.55-dev
-# Libav branch, the only one ubuntu support, but they are reverting to ffmpeg...
-#  - sudo add-apt-repository -y ppa:mc3man/trusty-media
-#  - sudo apt-get -qq update
-#  - sudo apt-get install -y libavformat-dev libavresample-dev
+  - sudo apt-get install -y build-essential yasm libtool python-dev wget git
+  - sudo apt-get install -y libchromaprint-dev portaudio19-dev
 
-# from go-libav
-  - sudo apt-get install -y build-essential yasm
+# libboost
+# Travis' Boost is too old (1.46 I think; it misses boost/atomic.hpp).
+# We need at least >=1.55. smart_ptr/intrusive_ref_counter.hpp doesn't exist in older ones.
+# Thus, install a newer one:
+  - wget http://sourceforge.net/projects/boost/files/boost/1.55.0/boost_1_55_0.tar.bz2
+  - tar --bzip2 -xf boost_1_55_0.tar.bz2
+  - cd boost_1_55_0
+#  - ./bootstrap.sh --help
+# We only need atomic (and also only header-only).
+# All the rest takes way too much time to compile.
+  - sudo ./bootstrap.sh --with-libraries="atomic"
+# Way too much output, so just display the last 50 lines.
+ - sudo ./b2 install | tail -n 50
+ - cd ..
+# on trusty
+# - sudo apt-get install -y libboost1.55-dev
+# on xenial (libboost 1.58)
+# - sudo apt-get install -y libboost-dev
+
+# need to use ffmpeg original branch, not libav branch that debian/ubuntu used in 2014 something
+# at least libswresample need to be ported on libav branch
+# from go-libav, then modified
 #  - wget -O ffmpeg.tar.bz2 http://ffmpeg.org/releases/ffmpeg-3.0.tar.bz2
   - wget -O ffmpeg.tar.bz2 http://ffmpeg.org/releases/ffmpeg-2.8.tar.bz2
-  - mkdir ffmpeg && tar xvf ffmpeg.tar.bz2 -C ffmpeg --strip-components=1 && cd ffmpeg && ./configure --prefix=/usr/local --disable-debug --disable-static --enable-shared --enable-pic --enable-pthreads --enable-nonfree --enable-gpl --disable-indev=jack --enable-openssl && make && sudo make install && cd -
+  - mkdir ffmpeg && tar xvf ffmpeg.tar.bz2 -C ffmpeg --strip-components=1 && cd ffmpeg && ./configure --prefix=/usr/local --disable-debug --disable-static --enable-shared --enable-pic --enable-pthreads --disable-indev=jack && make -j4 && sudo make install && cd -
+
+#fedora 23
+## add rpmfusion for ffmpeg
+# su -c 'dnf install http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm'
+## dev
+# dnf install -y git python gcc gcc-c++ redhat-rpm-config python-devel boost-devel ffmpeg-devel portaudio-devel libchromaprint-devel
+## run
+# dnf install -y python ffmpeg portaudio libchromaprint
 
 
 script:
